@@ -125,17 +125,11 @@ function blobToArrayBuffer(blob, done:(arrayBuffer)=>void):any{
   }
 }
 
-
-
-function test1(done:(midiJson)=>void){
-  console.error("----------------start test1---------------");
-  console.error("set channel to 9");
-  sampleInstruments.DefaultDrumSynth.midi.channel = 9;
+function testBuild(done:(midiJson)=>void){
+  console.error("set channel to", sampleInstruments.DefaultDrumSynth.midi.channel);
   console.error("build blob");
   let blob = exportBlob(samplePlayData, sampleInstruments);
   console.error("parse midi");
-
-
   blobToArrayBuffer(blob, arrayBuffer=>{
     parseArrayBuffer(arrayBuffer).then(json=>{
         console.log("midi data:", json);
@@ -148,23 +142,16 @@ function test1(done:(midiJson)=>void){
   downloadMidi(blob);
 }
 
+function test1(done:(midiJson)=>void){
+  console.error("----------------start test1---------------");
+  sampleInstruments.DefaultDrumSynth.midi.channel = 9;
+  testBuild(done);
+}
+
 function test2(done:(midiJson)=>void){
   console.error("----------------start test2---------------");
-  console.error("set channel to 10");
   sampleInstruments.DefaultDrumSynth.midi.channel = 10;
-  console.error("build blob");
-  let blob = exportBlob(samplePlayData, sampleInstruments);
-  console.error("parse midi");
-  blobToArrayBuffer(blob, arrayBuffer=>{
-    parseArrayBuffer(arrayBuffer).then(json=>{
-        console.log("midi data:", json);
-        console.log("track1, check channel!!", json.tracks[0][2]);
-        console.log("track2, check channel!!", json.tracks[1][2]);
-        done(json);
-    });
-  })
-  console.error("Listen to the downloaded midi file and check the drum part.");
-  downloadMidi(blob);
+  testBuild(done);
 }
 
 export {
