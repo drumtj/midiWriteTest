@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button id="test1">download MIDI / set channel 9</button>
+    <button id="test2">download MIDI / set channel 10</button>
+    <br>
+    <textarea id="dataview" rows="40" cols="80"></textarea>
+  </body>
+  <script type="text/javascript">
+    var bt1 = document.querySelector("#test1");
+    bt1.onclick = function(){
+      test.test1(function(midiJson){
+        document.querySelector("#dataview").value = JSON.stringify(midiJson, null, '\t');
+      });
+    }
+
+    var bt2 = document.querySelector("#test2");
+    bt2.onclick = function(){
+      test.test2(function(midiJson){
+        document.querySelector("#dataview").value = JSON.stringify(midiJson, null, '\t');
+      });
+    }
+  </script>
+</html>
