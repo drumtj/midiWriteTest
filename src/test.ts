@@ -13,7 +13,7 @@ let sampleInstruments = {
       'C4', 'C#4', 'D4', 'D#4', 'E4', 'F4', 'F#4', 'G4'
     ].reverse()
   },
-  
+
   "PlasticSynth": {
     midi:{
       instrument: 1,
@@ -139,7 +139,7 @@ function test1(done:(midiJson)=>void){
   blobToArrayBuffer(blob, arrayBuffer=>{
     parseArrayBuffer(arrayBuffer).then(json=>{
         console.log("midi data:", json);
-        console.log("track1, check channel!!", json.tracks[0][1]);
+        console.log("track1, check channel!!", json.tracks[0][2]);
         console.log("track2, check channel!!", json.tracks[1][2]);
         done(json);
     });
@@ -158,7 +158,7 @@ function test2(done:(midiJson)=>void){
   blobToArrayBuffer(blob, arrayBuffer=>{
     parseArrayBuffer(arrayBuffer).then(json=>{
         console.log("midi data:", json);
-        console.log("track1, check channel!!", json.tracks[0][1]);
+        console.log("track1, check channel!!", json.tracks[0][2]);
         console.log("track2, check channel!!", json.tracks[1][2]);
         done(json);
     });
